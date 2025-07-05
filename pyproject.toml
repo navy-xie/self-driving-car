@@ -5,9 +5,22 @@ description = "A tutorial on self-driving car simulation using pygame."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "loguru>=0.7.3",
+    "poethepoet>=0.36.0",
     "pygame>=2.6.1",
+    "ruff>=0.12.2",
 ]
+
+[tool.ruff]
+line-length = 90
+fix = true
+show-fixes = true
 
 [[tool.uv.index]]
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
+
+[tool.poe.tasks]
+lint = "ruff check ."
+format = "ruff format ."
+check = ["lint", "format"]
