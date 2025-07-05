@@ -5,6 +5,7 @@ description = "A tutorial on self-driving car simulation using pygame."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "arcade>=3.3.2",
     "loguru>=0.7.3",
     "poethepoet>=0.36.0",
     "pygame>=2.6.1",

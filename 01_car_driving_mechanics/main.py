@@ -18,7 +18,8 @@ def main():
     pygame.display.set_caption("01 Car Driving Mechanics")
     clock = pygame.time.Clock()
 
-    car = Car((ROAD_WIDTH - CAR_WIDTH) / 2, 50, CAR_WIDTH, CAR_HEIGHT)
+    car = Car((ROAD_WIDTH - CAR_WIDTH) / 2, 
+              ROAD_HEIGHT - CAR_HEIGHT - 20, CAR_WIDTH, CAR_HEIGHT)
     road = Surface((ROAD_WIDTH, ROAD_HEIGHT))
 
     running = True
@@ -28,7 +29,6 @@ def main():
                 running = False
 
         window.fill(Color("darkgray"))
-
         road.fill(Color("lightgray"))
 
         car.update()
