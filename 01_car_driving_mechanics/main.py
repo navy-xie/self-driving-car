@@ -12,14 +12,17 @@ ROAD_HEIGHT = WINDOW_HEIGHT
 CAR_WIDTH = 30
 CAR_HEIGHT = 50
 
+
 def main():
     pygame.init()
     window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     pygame.display.set_caption("01 Car Driving Mechanics")
     clock = pygame.time.Clock()
 
-    car = Car((ROAD_WIDTH - CAR_WIDTH) / 2, 
-              ROAD_HEIGHT - CAR_HEIGHT - 20, CAR_WIDTH, CAR_HEIGHT)
+    car = Car(
+        (ROAD_WIDTH - CAR_WIDTH) / 2, ROAD_HEIGHT - CAR_HEIGHT - 20, CAR_WIDTH, CAR_HEIGHT
+    )
+    car.store()
     road = Surface((ROAD_WIDTH, ROAD_HEIGHT))
 
     running = True
@@ -27,6 +30,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_ESCAPE:
+                    car.reset()
 
         window.fill(Color("darkgray"))
         road.fill(Color("lightgray"))

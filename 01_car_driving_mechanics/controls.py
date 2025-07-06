@@ -1,5 +1,6 @@
 import pygame
 
+
 class Controls:
     def __init__(self):
         self.left = False
@@ -13,3 +14,9 @@ class Controls:
         self.right = keys[pygame.K_RIGHT]
         self.forward = keys[pygame.K_UP]
         self.reverse = keys[pygame.K_DOWN]
+
+    def reset(self):
+        self.left = False
+        self.right = False
+        self.forward = False
+        self.reverse = False

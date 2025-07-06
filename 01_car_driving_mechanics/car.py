@@ -1,12 +1,12 @@
 import pygame
 import math
-from pygame import Color, Surface
+from pygame import Surface
 
 from controls import Controls
 
 
 class Car:
-    def __init__(self, x, y, width, height):
+    def __init__(self, x: float = 0, y: float = 0, width: float = 0, height: float = 0):
         self.x = x
         self.y = y
         self.width = width
@@ -23,6 +23,26 @@ class Car:
 
         image = pygame.image.load("../car.png")
         self.image = pygame.transform.scale(image, (self.width, self.height))
+
+    def copy_from(self, other: "Car"):
+        self.x = other.x
+        self.y = other.y
+        self.width = other.width
+        self.height = other.height
+        self.speed = other.speed
+        self.angle = other.angle
+        self.acceleration = other.acceleration
+        self.max_speed = other.max_speed
+        self.friction = other.friction
+        self.turning_speed = other.turning_speed
+
+    def store(self):
+        self.copy = Car()
+        self.copy.copy_from(self)
+
+    def reset(self):
+        self.copy_from(self.copy)
+        self.controls.reset()
 
     def draw(self, surface: Surface):
         image = pygame.transform.rotate(self.image, self.angle)
@@ -65,5 +85,5 @@ class Car:
 
         # update position
         angle_rad = math.radians(self.angle)
-        self.x += self.speed * math.sin(angle_rad)
+        self.x -= self.speed * math.sin(angle_rad)
         self.y -= self.speed * math.cos(angle_rad)
