@@ -6,9 +6,15 @@ from controls import Controls
 
 
 class Car:
-    def __init__(self, x: float = 0, y: float = 0, width: float = 0, height: float = 0):
-        self.x = x
-        self.y = y
+    def __init__(
+        self,
+        center_x: float = 0,
+        center_y: float = 0,
+        width: float = 0,
+        height: float = 0,
+    ):
+        self.center_x = center_x
+        self.center_y = center_y
         self.width = width
         self.height = height
 
@@ -25,8 +31,8 @@ class Car:
         self.image = pygame.transform.scale(image, (self.width, self.height))
 
     def copy_from(self, other: "Car"):
-        self.x = other.x
-        self.y = other.y
+        self.center_x = other.center_x
+        self.center_y = other.center_y
         self.width = other.width
         self.height = other.height
         self.speed = other.speed
@@ -46,7 +52,10 @@ class Car:
 
     def draw(self, surface: Surface):
         image = pygame.transform.rotate(self.image, self.angle)
-        surface.blit(image, (self.x, self.y))
+        surface.blit(
+            image,
+            (self.center_x - self.width / 2, self.center_y - self.height / 2),
+        )
 
     def update(self):
         self.move()
@@ -85,5 +94,5 @@ class Car:
 
         # update position
         angle_rad = math.radians(self.angle)
-        self.x -= self.speed * math.sin(angle_rad)
-        self.y -= self.speed * math.cos(angle_rad)
+        self.center_x -= self.speed * math.sin(angle_rad)
+        self.center_y -= self.speed * math.cos(angle_rad)

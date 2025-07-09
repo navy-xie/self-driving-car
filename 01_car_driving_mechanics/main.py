@@ -7,8 +7,8 @@ from car import Car
 # constants
 WINDOW_WIDTH = 400
 WINDOW_HEIGHT = 600
-ROAD_WIDTH = WINDOW_WIDTH / 2
-ROAD_HEIGHT = WINDOW_HEIGHT
+CANVAS_WIDTH = WINDOW_WIDTH / 2
+CANVAS_HEIGHT = WINDOW_HEIGHT
 CAR_WIDTH = 30
 CAR_HEIGHT = 50
 
@@ -20,10 +20,10 @@ def main():
     clock = pygame.time.Clock()
 
     car = Car(
-        (ROAD_WIDTH - CAR_WIDTH) / 2, ROAD_HEIGHT - CAR_HEIGHT - 20, CAR_WIDTH, CAR_HEIGHT
+        CANVAS_WIDTH / 2, CANVAS_HEIGHT - 2 * CAR_HEIGHT, CAR_WIDTH, CAR_HEIGHT
     )
     car.store()
-    road = Surface((ROAD_WIDTH, ROAD_HEIGHT))
+    canvas = Surface((CANVAS_WIDTH, CANVAS_HEIGHT))
 
     running = True
     while running:
@@ -35,12 +35,12 @@ def main():
                     car.reset()
 
         window.fill(Color("darkgray"))
-        road.fill(Color("lightgray"))
+        canvas.fill(Color("lightgray"))
 
         car.update()
-        car.draw(road)
+        car.draw(canvas)
 
-        window.blit(road, ((WINDOW_WIDTH - ROAD_WIDTH) / 2, 0))
+        window.blit(canvas, ((WINDOW_WIDTH - CANVAS_WIDTH) / 2, 0))
 
         pygame.display.flip()
         clock.tick(60)
