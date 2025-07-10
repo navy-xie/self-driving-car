@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [tool.ruff]
-line-length = 90
+line-length = 80
 fix = true
 show-fixes = true
 exclude = ["experiments"]
