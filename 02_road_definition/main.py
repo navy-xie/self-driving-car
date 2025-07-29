@@ -42,6 +42,8 @@ def main():
         window.fill(Color("darkgray"))
         canvas.fill(Color("lightgray"))
 
+        road.draw(canvas)
+
         car.update()
         car.draw(canvas)
 

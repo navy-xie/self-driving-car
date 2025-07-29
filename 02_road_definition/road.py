@@ -1,5 +1,8 @@
 from pygame.math import Vector2
-from pygame import Surface
+from pygame import Surface, Color
+import pygame
+
+from utils import draw_dashed_line
 
 
 class Road:
@@ -32,4 +35,21 @@ class Road:
 
         return self.left + (lane_index + 0.5) * lane_width
 
-    def draw(self, canvas: Surface): ...
+    def draw(self, canvas: Surface):
+        line_width = 5
+        dash_length = 20
+        gap_length = 20
+        line_color = Color("white")
+
+        # draw board
+        for border in self.borders:
+            pygame.draw.line(canvas, line_color, border[0], border[1], line_width)
+
+        # draw dash lines
+        for i in range(self.lane_count - 1):
+            x = self.left + self.width * (i + 1) / self.lane_count
+            draw_dashed_line(canvas,
+                             line_color,
+                             (x, self.top),
+                             (x, self.bottom),
+                             dash_length, gap_length)
