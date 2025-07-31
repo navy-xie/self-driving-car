@@ -27,3 +27,6 @@ default = true
 lint = "ruff check ."
 format = "ruff format ."
 check = ["lint", "format"]
+
+g01.shell = "cd 01_car_driving_mechanics && python main.py"
+g02.shell = "cd 02_road_definition && python main.py"

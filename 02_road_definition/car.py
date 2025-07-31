@@ -50,11 +50,11 @@ class Car:
         self.copy_from(self.copy)
         self.controls.reset()
 
-    def draw(self, canvas: Surface):
+    def draw(self, canvas: Surface, offset_y: float):
         image = pygame.transform.rotate(self.image, self.angle)
         canvas.blit(
             image,
-            (self.center_x - self.width / 2, self.center_y - self.height / 2),
+            (self.center_x - self.width / 2, self.center_y - self.height / 2 + offset_y),
         )
 
     def update(self):

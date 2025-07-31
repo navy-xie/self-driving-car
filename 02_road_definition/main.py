@@ -22,9 +22,10 @@ def main():
 
     canvas = Surface((CANVAS_WIDTH, CANVAS_HEIGHT))
     road = Road(CANVAS_WIDTH / 2, CANVAS_WIDTH * 0.9)
+    origin_y = CANVAS_HEIGHT * 0.7 - CAR_HEIGHT / 2
     car = Car(
         road.get_lane_center(1),
-        CANVAS_HEIGHT - 2 * CAR_HEIGHT,
+        origin_y,
         CAR_WIDTH,
         CAR_HEIGHT,
     )
@@ -42,10 +43,13 @@ def main():
         window.fill(Color("darkgray"))
         canvas.fill(Color("lightgray"))
 
-        road.draw(canvas)
+        
 
         car.update()
-        car.draw(canvas)
+        offset_y = origin_y - car.center_y
+
+        road.draw(canvas, offset_y)
+        car.draw(canvas, offset_y)
 
         window.blit(canvas, ((WINDOW_WIDTH - CANVAS_WIDTH) / 2, 0))
 
